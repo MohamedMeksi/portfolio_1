@@ -1,0 +1,149 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  background-color: var(--background-light);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  transition: all 0.3s ease-in-out;
+}
+
+.skillGrid > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-dark);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInSkills 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInSkills {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.skillGrid > div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  background-color: var(--hover-background);
+}
+
+.skillGrid img {
+  width: 35px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.skillGrid img:hover {
+  transform: scale(1.1);
+}
+
+.skillGrid p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: center;
+  transition: color 0.3s ease, padding 0.3s ease;
+}
+
+.skillGrid p:hover {
+  color: var(--primary-color);
+  padding: 5px 0;
+}
+
+.skillGrid > div::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.skillGrid > div:hover::after {
+  transform: scaleX(1);
+}
+
+.skillGrid .progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.skillGrid .progressBar > div {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  width: 0;
+  animation: progress 1.5s forwards;
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+@media (min-width: 800px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .skillGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
